@@ -157,5 +157,11 @@ public class DeviceController {
         return deviceOrderService.myOrders();
     }
 
+    @ApiOperation("根据设备id获取设备预约记录")
+    @GetMapping("/device/{id}")
+    public Response<List<DeviceOrderVO>> getDeviceOrderListById(@PathVariable Long id) {
+        return deviceOrderService.getDeviceOrderListById(id);
+    }
+
 
 }

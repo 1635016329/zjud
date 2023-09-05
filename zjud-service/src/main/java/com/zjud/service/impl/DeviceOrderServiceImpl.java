@@ -111,6 +111,16 @@ public class DeviceOrderServiceImpl extends ServiceImpl<DeviceOrderMapper, Devic
         return ResultUtils.success(list);
     }
 
+    @Override
+    public Response<List<DeviceOrderVO>> getDeviceOrderListById(Long id) {
+        QueryWrapper<DeviceOrder> deviceOrderQueryWrapper = new QueryWrapper<>();
+        deviceOrderQueryWrapper.eq("device_id", id)
+                .orderByDesc("create_time");
+        List<DeviceOrder> orders = list(deviceOrderQueryWrapper);
+        List<DeviceOrderVO> list = parseDeviceOrderVOList(orders);
+        return ResultUtils.success(list);
+    }
+
     /**
      * 将orders转化为orderVOs
      * @param orders

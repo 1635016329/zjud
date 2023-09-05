@@ -56,4 +56,11 @@ public interface DeviceOrderService extends IService<DeviceOrder> {
      * @return
      */
     Response<List<DeviceOrderVO>> myOrders();
+
+    /**
+     * 根据设备id获取设备预约记录
+     * @param id
+     * @return
+     */
+    Response<List<DeviceOrderVO>> getDeviceOrderListById(Long id);
 }
