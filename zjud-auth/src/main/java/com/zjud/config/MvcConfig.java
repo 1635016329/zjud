@@ -1,6 +1,6 @@
 package com.zjud.config;
 
-import com.zjud.interceptor.AuthInterceptor;
+import com.zjud.interceptor.AdminInterceptor;
 import com.zjud.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -21,7 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
     private LoginInterceptor loginInterceptor;
 
     @Resource
-    private AuthInterceptor authInterceptor;
+    private AdminInterceptor adminInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -36,9 +36,13 @@ public class MvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns(swaggerPaths)
                 .order(0);
 
-        registry.addInterceptor(authInterceptor)
+        registry.addInterceptor(adminInterceptor)
                 .addPathPatterns("/**/admin/**")
                 .order(1);
+
+        registry.addInterceptor(adminInterceptor)
+                .addPathPatterns("/project/admin/**")
+                .order(2);
     }
 
 

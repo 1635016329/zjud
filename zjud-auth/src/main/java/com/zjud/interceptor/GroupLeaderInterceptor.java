@@ -19,13 +19,13 @@ import javax.servlet.http.HttpServletResponse;
  * @description 权限校验拦截器
  */
 @Component
-public class AuthInterceptor implements HandlerInterceptor {
+public class GroupLeaderInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = TokenThreadLocal.getToken();
         Integer userRole = Convert.toInt(JWTUtil.parseToken(token).getPayload("userRole"));
-        if (!userRole.equals(UserRoleEnum.ROOT.getKey())) {
+        if (!userRole.equals(UserRoleEnum.PROJECT_GROUP_LEADER.getKey()) || !userRole.equals(UserRoleEnum.ROOT.getKey())) {
             throw new BusinessException(ResponseCode.NO_AUTH_ERROR);
         }
         return true;

@@ -9,6 +9,7 @@ package com.zjud.enums;
 public enum UserRoleEnum {
     DEFAULT_USER(0, "默认"),
     ROOT(1, "root"),
+    PROJECT_GROUP_LEADER(2, "项目组长")
     ;
 
     private Integer key;

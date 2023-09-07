@@ -163,5 +163,4 @@ public class DeviceController {
         return deviceOrderService.getDeviceOrderListById(id);
     }
 
-
 }
